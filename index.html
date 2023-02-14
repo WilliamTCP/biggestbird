@@ -1,4 +1,70 @@
+<!DOCTYPE html>
 <html>
-<h1>Im the biggest bird<h1/>
-<h5> yeah im the biggest one mel<h5/>
-<html/>
+  <head>
+    <style>
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        clip-path: path("M48 16.992c-12.592-21.608-48-15.3-48 11.776 0 18.644 22.284 37.708 48 63.232 25.72-25.524 48-46.588 48-63.232 0-27.176-35.5-34.124-48-11.776z");
+      }
+
+      #text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+        color: white;
+        text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 0 0 50px #ff69b4, 0 0 60px #ff69b4, 0 0 70px #ff69b4;
+        animation: shine 1s ease-in-out infinite;
+      }
+
+      @keyframes shine {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.05);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body style="background-color: black;">
+    <div id="box"></div>
+    <div id="text">I Love You Melanie</div>
+    <script>
+      let box = document.getElementById("box");
+      let xSpeed = 5;
+      let ySpeed = 5;
+      
+      function animate() {
+        let x = box.offsetLeft;
+        let y = box.offsetTop;
+        let windowWidth = window.innerWidth;
+        let windowHeight = window.innerHeight;
+        
+        if (x + 100 >= windowWidth || x <= 0) {
+          xSpeed = -xSpeed;
+        }
+        if (y + 100 >= windowHeight || y <= 0) {
+          ySpeed = -ySpeed;
+        }
+        
+        x += xSpeed;
+        y += ySpeed;
+        
+        box.style.left = x + "px";
+        box.style.top = y + "px";
+        
+        requestAnimationFrame(animate);
+      }
+      
+      animate();
+    </script>
+  </body>
+</html>
